@@ -12,3 +12,9 @@ The seeds.rb has been updated to make inserting of the stores significantly fast
 
 
 By default, the datadog configuration won't work and needs to be updated with an API key.
+
+To log into the rails_web container in order to have access to the ruby repl
+
+```shell
+docker exec -it rails_web /bin/bash
+```
