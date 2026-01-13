@@ -1,11 +1,5 @@
-<% @films.each do |film| %>
-  <div class="film">
-    <h2><%= film.title %></h2>
-    <p>
-      <%= "Language: #{film.language.name}" %>
-    </p>
-    <p>
-      <%= "Available at #{film.stores.pluck(:name).join(', ')}" %>
-    </p>
-  </div>
+<% cache @films do %>
+  <% @films.each do |film| %>
+    <%= render "films/show", film: film %>
+  <% end %>
 <% end %>

@@ -1,5 +1,6 @@
 require_relative "boot"
-
+require_relative "../app/middleware/datadog_middleware"
+require_relative "../app/middleware/shard_switcher"
 require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
@@ -8,8 +9,20 @@ Bundler.require(*Rails.groups)
 
 module Moviestore
   class Application < Rails::Application
+    config.middleware.use Middleware::DatadogMiddleware
+    config.middleware.use Middleware::ShardSwitcher
+    config.active_record.query_log_tags_enabled = true
+    config.active_record.query_log_tags = [
+      # Rails query log tags:
+      :application, :controller, :action, :job,
+      # GraphQL-Ruby query log tags:
+      current_graphql_operation: -> { GraphQL::Current.operation_name },
+      current_graphql_field: -> { GraphQL::Current.field&.path },
+      current_dataloader_source: -> { GraphQL::Current.dataloader_source_class },
+    ]
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
+    config.active_support.to_time_preserves_timezone = :zone
 
     # Configuration for the application, engines, and railties goes here.
     #

@@ -22,8 +22,21 @@ mysql: &mysql
   port: 3306
 
 development:
-  <<: <%= ENV['DB_MODE'] ? "*#{ENV['DB_MODE']}" : "*mysql" %>
-  database: moviestore_development
+  primary:
+    <<: <%= ENV['DB_MODE'] ? "*#{ENV['DB_MODE']}" : "*mysql" %>
+    database: moviestore_development
+  shard_one:
+    <<: <%= ENV['DB_MODE'] ? "*#{ENV['DB_MODE']}" : "*mysql" %>
+    database: moviestore_development_shard_one
+    migration_paths: db/migrate_shards
+  shard_two:
+    <<: <%= ENV['DB_MODE'] ? "*#{ENV['DB_MODE']}" : "*mysql" %>
+    database: moviestore_development_shard_two
+    migration_paths: db/migrate_shards
+  shard_three:
+    <<: <%= ENV['DB_MODE'] ? "*#{ENV['DB_MODE']}" : "*mysql" %>
+    database: moviestore_development_shard_three
+    migration_paths: db/migrate_shards
   cache:
     <<: <%= ENV['DB_MODE'] ? "*#{ENV['DB_MODE']}" : "*mysql" %>
     database: moviestore_development_cache

@@ -42,7 +42,7 @@ task benchmark_preload_simple: :environment do
   end
 
   memory[:simple][:eager_load] = filter_report(report)
-
-  pp h[:simple]
+  json_h = h[:simple].each_with_object({}) { |(k, v), h| h[k] = v.to_h }
+  pp json_h
   pp memory[:simple]
 end
