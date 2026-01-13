@@ -14,17 +14,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_12_30_205446) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
-  create_table "audists", force: :cascade do |t|
-    t.integer "store_id"
-    t.integer "actor_id"
-    t.string "actor_type"
-    t.integer "subject_id"
-    t.string "subject_type"
-    t.string "event"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "audits", force: :cascade do |t|
     t.integer "store_id"
     t.integer "actor_id"

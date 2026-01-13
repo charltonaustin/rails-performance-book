@@ -9,7 +9,7 @@ Bundler.require(*Rails.groups)
 
 module Moviestore
   class Application < Rails::Application
-    config.middleware.use Middleware::DatadogMiddleware
+    # config.middleware.use Middleware::DatadogMiddleware
     config.middleware.use Middleware::ShardSwitcher
     config.active_record.query_log_tags_enabled = true
     config.active_record.query_log_tags = [

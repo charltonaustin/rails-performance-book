@@ -1,6 +1,8 @@
-Datadog.configure do |c|
-  c.service = 'rails-performance-book'
-  c.env = Rails.env
-  c.tracing.test_mode.enabled = true
-end
+# un comment when enabling datadog 
+
+# Datadog.configure do |c|
+#   c.service = 'rails-performance-book'
+#   c.env = Rails.env
+#   c.tracing.test_mode.enabled = true
+# end
 
