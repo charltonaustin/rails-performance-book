@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
+# This has relatively little cost and allows for dynamic reloading when only the Gemfile changes
+echo "Running bundle install..."
 bundle install
 
 if [ -n "${POSTGRES_HOST:-}" ]; then
@@ -20,10 +22,10 @@ fi
 echo "Running mysql db:prepare..."
 bundle exec rails db:prepare
 
-echo "Running postgres db:prepare"
+echo "Running postgres db:prepare..."
 DB_MODE=postgres bundle exec rails db:prepare
 
-echo "Running datadog-agent start and ignoring failures"
+echo "Running datadog-agent start and ignoring failures..."
 service datadog-agent start || true
 
 echo "Starting app..."
