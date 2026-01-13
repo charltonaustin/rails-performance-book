@@ -1,24 +1,14 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+To start everything up simply run
 
-Things you may want to cover:
+```shell
+docker-compose up
+```
 
-* Ruby version
+# Important Notes
 
-* System dependencies
+The seeds.rb has been updated to make inserting of the stores significantly faster.
 
-* Configuration
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+By default, the datadog configuration won't work and needs to be updated with an API key.
