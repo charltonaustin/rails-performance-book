@@ -14,7 +14,7 @@ task benchmark_preload_complex: :environment do
       p "Processing record #{store.id}..."
       store.films.map { |f| f.language.name }
     end
-  end
+  end.to_h
 
   p "Executing complex exercise with preload"
   h[:complex][:preload] = Benchmark.measure do
@@ -22,7 +22,7 @@ task benchmark_preload_complex: :environment do
       p "Processing record #{store.id}..."
       store.films.preload(:language).map { |f| f.language.name }
     end
-  end
+  end.to_h
 
   p "Executing complex exercise with eager load"
   h[:complex][:eager_load] = Benchmark.measure do
@@ -30,7 +30,7 @@ task benchmark_preload_complex: :environment do
       p "Processing record #{store.id}..."
       store.films.eager_load(:language).map { |f| f.language.name }
     end
-  end
+  end.to_h
 
   pp h[:complex]
 end

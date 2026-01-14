@@ -1,5 +1,8 @@
 # README
 
+Update the memory to have 12 Gigs
+Update the cpu to be 4
+Make sure to not have anything else running on the same ports.
 To start everything up simply run
 
 ```shell
