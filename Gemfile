@@ -85,3 +85,19 @@ end
 gem "solid_cache", "~> 1.0"
 
 gem "solid_queue", "~> 1.1"
+
+gem "actionpack-page_caching", "~> 1.2"
+
+gem "actionpack-action_caching", "~> 1.2"
+
+gem "identity_cache", "~> 1.6"
+
+gem "dalli", "~> 3.2"
+
+gem "kaminari", "~> 1.2"
+
+gem "graphql", "~> 2.5"
+gem "graphiql-rails", group: :development
+
+# gem 'datadog', require: 'datadog/auto_instrument'
+gem "packwerk", "~> 3.2"

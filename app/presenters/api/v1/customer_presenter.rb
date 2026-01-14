@@ -1,4 +1,4 @@
-class Api::V1::CustomerPresenter
+class Api::V1::CustomerPresenter < Api::V1::Presenter
   attr_reader :resource
 
   def initialize(customer)
@@ -9,7 +9,7 @@ class Api::V1::CustomerPresenter
     {
       id: resource.id,
       name: resource.name,
-      rental_counter: resource.rentals.count
+      rental_counter: resource.rentals_count
     }
   end
 end

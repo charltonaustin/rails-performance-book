@@ -10,49 +10,66 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2022_08_19_212767) do
-  create_table "customer_stats_profiles", charset: "utf8mb3", force: :cascade do |t|
+ActiveRecord::Schema[8.0].define(version: 2025_12_30_205446) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "pg_catalog.plpgsql"
+
+  create_table "audits", force: :cascade do |t|
+    t.integer "store_id"
+    t.integer "actor_id"
+    t.string "actor_type"
+    t.integer "subject_id"
+    t.string "subject_type"
+    t.string "event"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "customer_stats_profiles", force: :cascade do |t|
     t.integer "customer_id"
     t.text "data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "customers", charset: "utf8mb3", force: :cascade do |t|
+  create_table "customers", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "rentals_count"
   end
 
-  create_table "films", charset: "utf8mb3", force: :cascade do |t|
+  create_table "films", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "language_id"
     t.text "big_text_column"
+    t.index ["language_id", "title"], name: "index_films_on_language_id_and_title"
+    t.index ["title"], name: "index_films_on_title"
   end
 
-  create_table "followings", charset: "utf8mb3", force: :cascade do |t|
+  create_table "followings", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followed_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "inventories", charset: "utf8mb3", force: :cascade do |t|
+  create_table "inventories", force: :cascade do |t|
     t.integer "film_id"
     t.integer "store_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "languages", charset: "utf8mb3", force: :cascade do |t|
+  create_table "languages", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "rentals", charset: "utf8mb3", force: :cascade do |t|
+  create_table "rentals", force: :cascade do |t|
     t.integer "inventory_id"
     t.integer "customer_id"
     t.datetime "rental_date"
@@ -61,13 +78,14 @@ ActiveRecord::Schema[8.0].define(version: 2022_08_19_212767) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "stores", charset: "utf8mb3", force: :cascade do |t|
+  create_table "stores", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
+    t.integer "most_rented_film_id"
   end
 
-  create_table "users", charset: "utf8mb3", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"

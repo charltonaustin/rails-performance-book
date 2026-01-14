@@ -38,7 +38,7 @@ task benchmark_narrow_fetches: :environment do
     end
   end
   memory[:pluck_fetch] = filter_report(report)
-
-  pp h
+  json_h = h.each_with_object({}) { |(k, v), hash| hash[k] = v.to_h }
+  pp json_h
   pp memory
 end
